@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body style='background-color: gray; text-align: center;'>
+<header>
+    <nav style='display: flex; justify-content: space-around; background-color: black; height: 50px; font-size: 30px; '>
+        <a style='text-decoration: none; color: white;' href={% url "inicio" %}>Inicio</a>
+        <a style='text-decoration: none; color: white;' href={% url "crear_personaje" %}>Crear personajes</a>
+        <a style='text-decoration: none; color: white;' href={% url "personajes" %}>Personajes</a>
+    </nav>
+</header>
+
+    <h1>Personajes</h1>
+    <p>
+        <ul>
+            {% for personaje in personajes %}
+                <li style='margin-top: 50px; background-color: white;'>
+                    <p>
+                        Nombre: {{personaje.personaje_nombre}}
+                    </p>
+                    <p>
+                        Poder: {{personaje.tipo_de_poder}}
+                    </p>
+                    <p>
+                        Daño: {{personaje.daño_de_poder}}
+                    </p> 
+                </li>
+                {% endfor %}
+        </ul>
+    </p>
+
+</body>
+</html>
