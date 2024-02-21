@@ -33,7 +33,7 @@ def crear_personaje(request):
             dmg_realizado = random.randint(5,  daño_de_poder)
             creacion_personaje = Personaje(personaje_nombre = personaje_nombre, tipo_de_poder = tipo_de_poder, daño_de_poder = daño_de_poder, dmg_realizado = dmg_realizado)
             creacion_personaje.save()
-            return redirect("alumnos_render")
+            return redirect("personajes")
    
     return render(request, 'crear_personaje.html', {'formulario': formulario})
 
