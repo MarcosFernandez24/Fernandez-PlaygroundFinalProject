@@ -3,21 +3,26 @@ from django.http import HttpResponse
 from django.template import Template, Context, loader
 from inicio.models import Personaje
 import random
-from inicio.forms import FormularioCrearPersonaje
+from inicio.forms import FormularioCrearPersonaje, BuscarHeroe
 
 
 
 def vista_principal(request): 
-    template = loader.get_template('index.html')
+    template = loader.get_template('inicio/index.html')
 
-    return render(request, 'index.html')
+    # return render(request, 'inicio/index.html')
+    return render(request, "inicio/index.html")
     
       
 def personajes(request):
     
     personajes = Personaje.objects.all()
-     
-    return render(request, 'personajes.html', {'personajes': personajes})
+    formulario = BuscarHeroe(request.GET)
+    if formulario.is_valid():
+        info_busqueda = formulario.cleaned_data.get('nombre')
+        personajes = Personaje.objects.filter(personaje_nombre__icontains =  info_busqueda)
+        
+    return render(request, 'inicio/personajes.html', {'personajes': personajes, 'formulario': formulario})
       
 
 
@@ -35,5 +40,14 @@ def crear_personaje(request):
             creacion_personaje.save()
             return redirect("personajes")
    
-    return render(request, 'crear_personaje.html', {'formulario': formulario})
+    return render(request, 'inicio/crear_personaje.html', {'formulario': formulario})
 
+def eliminar_personaje (request):
+    ... 
+
+def editar_personaje(requuest):
+    ...
+
+def ver_personaje(request, id_personaje):
+    personaje = Personaje.objects.get(id=id_personaje)
+    return render(request, 'inicio/ver_personaje.html', {'personaje' : personaje})

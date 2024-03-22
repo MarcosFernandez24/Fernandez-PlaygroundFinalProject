@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+
+{% block h1_header %}
+Datos del personaje {{personaje.id}}
+{% endblock h1_header %}
+
+{% block main %}
+<ul>
+    <li>Nombre del personaje:{{personaje.personaje_nombre}}</li>
+    <li>Tipo de poder:{{personaje.tipo_de_poder}}</li>
+    <li>Daño del personaje:{{personaje.daño_de_poder}}</li>
+    <li>Daño realizado:{{personaje.dmg_realizado}}</li>
+</ul>
+{% endblock main %}
+
+    

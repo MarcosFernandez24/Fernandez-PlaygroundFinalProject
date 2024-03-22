@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+
+{% block h1_header %}
+Crear personaje
+{% endblock h1_header %}
+
+
+{% block main %}
+    <form action={% url "crear_personaje"%} method="POST" style="margin-top: 60px;">
+        {% csrf_token %}
+        <table style="margin-top: 20px;">
+            {{formulario}}
+        </table>
+        <input type="submit" value="Crear">
+    </form>
+    {% endblock main %}
