@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+{% block h1_header %}
+Detalle de {{carta}}
+{% endblock h1_header %}
+{% block main %}
+<ul>
+    <li>nombre de carta: {{carta.nombre_carta}}</li>
+    <li>elemento: {{carta.elemento}}</li>
+    <li>daño:{{carta.daño_de_carta}}</li>
+</ul>
+{% endblock main %}

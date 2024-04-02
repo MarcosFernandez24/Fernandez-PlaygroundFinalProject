@@ -348,6 +348,9 @@ button:focus:not(:focus-visible) {
   outline: 0;
 }
 
+headerContent
+
+
 input,
 button,
 select,
@@ -10673,7 +10676,6 @@ header.masthead {
   padding-top: calc(8rem + 57px);
   padding-bottom: 8rem;
   background: no-repeat center center;
-  background-color: blue;
   background-size: cover;
   background-attachment: scroll;
 }

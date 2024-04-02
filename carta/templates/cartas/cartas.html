@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+{% block h1_header %}
+Listado de cartas
+{% endblock h1_header %}
+{% block main %}
+<a href={% url "crear_cartas" %}>Crear Carta</a>
+
+{% if cartas  %}
+{% for carta in cartas %}
+    <ul>
+        <li style="list-style-type: none; margin-top: 20px;">
+                {{carta}} | 
+                <a href={% url 'detalle_cartas' carta.id %}>Detalles</a>|
+                <a href={% url 'eliminar_cartas' carta.id%}>Eliminar</a>|
+                <a href={% url 'editar_cartas' carta.id%}>Editar</a> 
+        </li>
+    </ul>
+    {% endfor %}
+    
+    {% else %}    
+        <h1>No existe nada</h1>
+    {% endif %}
+{% endblock main %}
+
+    

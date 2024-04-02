@@ -2,8 +2,8 @@
 {% block h1_header %}
 Personajes
 {% endblock h1_header %}
-
 {% block main %}
+<a href={% url "crear_personaje" %}>Crear personajes</a>
 <form action="{% url 'personajes' %}" style="margin-top: 60px;">
     {{formulario}}
     <input style="margin-top: 20px;" type="submit" value="Buscar">
@@ -12,7 +12,10 @@ Personajes
 {% for personaje in personajes %}
     <ul>
         <li style="list-style-type: none; margin-top: 20px;">
-                {{personaje}} | <a href= {% url 'ver_personaje' personaje.id %}>ver</a>||
+                {{personaje}} | 
+                <a href= {% url 'ver_personaje' personaje.id %}>Ver</a>|
+                <a href={% url 'eliminar_personaje' personaje.id%}>Eliminar</a>|
+                <a href={% url 'editar_personaje' personaje.id%}>Editar</a>
         </li>
     </ul>
     {% endfor %}

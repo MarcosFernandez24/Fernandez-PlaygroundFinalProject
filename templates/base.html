@@ -27,15 +27,25 @@
                 </button>
                 <div class="collapse navbar-collapse" id="navbarResponsive">
                     <ul class="navbar-nav ms-auto py-4 py-lg-0">
-                        <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href={% url "crear_personaje" %}>Crear personajes</a></li>
                         <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href={% url "personajes" %}>Personajes</a></li>
+                        <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href={% url "cartas" %}>Cartas</a></li>
+                        {% if request.user.is_authenticated  %}
+                        <form method="post" action="{% url 'logout' %}">
+                            {% csrf_token %}
+                            <button type="submit" class="btn btn-secondary">Logout</button>
+                            
+                        </form>
+                        {% else %}
+                        <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href={% url "login" %}>Login</a></li>
+                        {% endif %}
+                        
                     </ul>
                 </div>
             </div>
         </nav>
 
-        {% block header %}
-        <header class="text-center headerContent masthead">
+        <header class="text-center masthead" style="background-color: gray">
+            {% block header %}
             <h1 style='margin-top: 100px;'>
                 {% block h1_header %}
                 {% endblock h1_header %}

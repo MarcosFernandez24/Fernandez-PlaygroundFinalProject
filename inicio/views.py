@@ -3,7 +3,7 @@ from django.http import HttpResponse
 from django.template import Template, Context, loader
 from inicio.models import Personaje
 import random
-from inicio.forms import FormularioCrearPersonaje, BuscarHeroe
+from inicio.forms import FormularioCrearPersonaje, BuscarHeroe, FormularioEdicionPersonaje
 
 
 
@@ -42,11 +42,30 @@ def crear_personaje(request):
    
     return render(request, 'inicio/crear_personaje.html', {'formulario': formulario})
 
-def eliminar_personaje (request):
-    ... 
+def eliminar_personaje (request, id_personaje):
+    personaje = Personaje.objects.get(id=id_personaje)
+    personaje.delete()
+    return redirect('personajes')
 
-def editar_personaje(requuest):
-    ...
+def editar_personaje(request, id_personaje):
+    personaje = Personaje.objects.get(id=id_personaje)
+    formulario = FormularioEdicionPersonaje(initial={'personaje_nombre': personaje.personaje_nombre, 'tipo_de_poder': personaje.tipo_de_poder, 'daño_de_poder': personaje.daño_de_poder })
+    
+    if request.method == 'POST':
+        formulario = FormularioEdicionPersonaje(request.POST)
+        if formulario.is_valid():
+            info_nueva = formulario.cleaned_data
+            
+            personaje.nombre = info_nueva.get('personaje_nombre')
+            personaje.tipo_de_poder = info_nueva.get('tipo_de_poder')
+            personaje.daño_de_poder = info_nueva.get('daño_de_poder')
+            
+            personaje.save()
+            return redirect('personajes')
+    
+    
+    
+    return render(request, 'inicio/editar_personaje.html', {'personaje': personaje, 'formulario': formulario} )
 
 def ver_personaje(request, id_personaje):
     personaje = Personaje.objects.get(id=id_personaje)
