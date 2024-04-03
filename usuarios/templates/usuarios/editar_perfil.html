@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+
+{% block h1_header %}
+Editar perfil
+{% endblock h1_header %}
+
+
+{% block main %}
+    <form action={% url "editar_perfil"%} method="POST" enctype="multipart/form_data" style="margin-top: 60px;">
+        {% csrf_token %}
+        <table style="margin-top: 20px;">
+            {{formulario}}
+        </table>
+        <input type="submit" value="Editar">
+    </form>
+    {% endblock main %}

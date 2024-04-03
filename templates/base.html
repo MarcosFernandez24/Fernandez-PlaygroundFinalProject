@@ -30,13 +30,15 @@
                         <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href={% url "personajes" %}>Personajes</a></li>
                         <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href={% url "cartas" %}>Cartas</a></li>
                         {% if request.user.is_authenticated  %}
+                        <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href={% url "perfil" %}>{{request.user.username}}</a></li>
                         <form method="post" action="{% url 'logout' %}">
                             {% csrf_token %}
-                            <button type="submit" class="btn btn-secondary">Logout</button>
+                            <button type="submit" class="btn btn-dark">Logout</button>
                             
                         </form>
                         {% else %}
                         <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href={% url "login" %}>Login</a></li>
+                        <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href={% url "registro" %}>Registrarse</a></li>
                         {% endif %}
                         
                     </ul>

@@ -4,6 +4,7 @@ from django.template import Template, Context, loader
 from inicio.models import Personaje
 import random
 from inicio.forms import FormularioCrearPersonaje, BuscarHeroe, FormularioEdicionPersonaje
+from django.contrib.auth.decorators import login_required
 
 
 
@@ -42,11 +43,13 @@ def crear_personaje(request):
    
     return render(request, 'inicio/crear_personaje.html', {'formulario': formulario})
 
+@login_required
 def eliminar_personaje (request, id_personaje):
     personaje = Personaje.objects.get(id=id_personaje)
     personaje.delete()
     return redirect('personajes')
 
+@login_required
 def editar_personaje(request, id_personaje):
     personaje = Personaje.objects.get(id=id_personaje)
     formulario = FormularioEdicionPersonaje(initial={'personaje_nombre': personaje.personaje_nombre, 'tipo_de_poder': personaje.tipo_de_poder, 'daño_de_poder': personaje.daño_de_poder })

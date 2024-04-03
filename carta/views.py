@@ -4,6 +4,8 @@ from django.views.generic.list import ListView
 from django.views.generic.detail import DetailView
 from carta.models import Carta
 from django.urls import reverse_lazy 
+from django.contrib.auth.mixins import LoginRequiredMixin
+
 
 class Cartas(ListView):
     model = Carta
@@ -16,13 +18,13 @@ class CrearCartas(CreateView):
     fields = ['nombre_carta', 'elemento', 'daño_de_carta']
     success_url = reverse_lazy('cartas')
       
-class EliminarCarta(DeleteView):
+class EliminarCarta(LoginRequiredMixin, DeleteView):
     model = Carta
     template_name = "cartas/eliminar_cartas.html"
     success_url = reverse_lazy('cartas')
     
     
-class ModelUpdateView(UpdateView):
+class ModelUpdateView(LoginRequiredMixin, UpdateView):
     model = Carta
     template_name = "cartas/editar_cartas.html"
     success_url = reverse_lazy('cartas')
