@@ -6,7 +6,7 @@ perfil de {{request.user}}
 <ul>
     <li>nombre: {{request.user.first_name}}</li>
     <li>email: {{request.user.email}}</li>
-    <li>Avatar: <img src={{request.user.avatar.url}} alt=""></li>
+    <li>avatar: <img src={{request.user.datosextras.avatar.url}} alt="" height='100px'></li>
 </ul>
 
 <a class='btn btn-dark' href={% url "editar_perfil" %}>Editar perfil</a>

@@ -44,18 +44,14 @@ def perfil(request):
     return render(request, 'usuarios/perfil.html')
 
 def editar_perfil(request):
-    
+    user = request.user
+    datos_extra, _ = DatosExtras.objects.get_or_create(user=user)
     if request.method == 'POST':
-        
-        user = request.user
-        datos_extra, _ = DatosExtras.objects.get_or_create(user=user)
-        
-         
         formulario = EditarPerfil(request.POST, request.FILES, instance=request.user)
         if formulario.is_valid():
-            avatar = formulario.cleaned_data.get('avatar')
+            avatar = formulario.cleaned_data.get('avatar') 
             
-            if avatar and datosextra.avatar:
+            if avatar:
                 datos_extra.avatar = avatar
                 
             datos_extra.save()

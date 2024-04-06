@@ -15,7 +15,6 @@ class CreacionDeUsuario(UserCreationForm):
         
 class EditarPerfil(UserChangeForm):
     password = None
-    last_name = None
     email = forms.EmailField(label='Editar email')
     first_name = forms.CharField(label='Nombre')
     avatar = forms.ImageField(required=False)
