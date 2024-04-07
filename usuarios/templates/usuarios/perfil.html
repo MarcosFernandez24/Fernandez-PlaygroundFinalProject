@@ -4,9 +4,11 @@ perfil de {{request.user}}
 {% endblock h1_header %}
 {% block main %}
 <ul>
-    <li>nombre: {{request.user.first_name}}</li>
-    <li>email: {{request.user.email}}</li>
-    <li>avatar: <img src={{request.user.datosextras.avatar.url}} alt="" height='100px'></li>
+    <li>Nombre de usuario: {{request.user.username}}</li>
+    <li>Nombre: {{request.user.first_name}}</li>
+    <li>Apellido: {{request.user.last_name}}</li>
+    <li>Email: {{request.user.email}}</li>
+    <li>Avatar: <img src={{request.user.datosextras.avatar.url}} alt="avatar del usuario" height='100px'></li>
 </ul>
 
 <a class='btn btn-dark' href={% url "editar_perfil" %}>Editar perfil</a>

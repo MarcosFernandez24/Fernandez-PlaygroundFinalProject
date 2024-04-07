@@ -73,3 +73,6 @@ def editar_personaje(request, id_personaje):
 def ver_personaje(request, id_personaje):
     personaje = Personaje.objects.get(id=id_personaje)
     return render(request, 'inicio/ver_personaje.html', {'personaje' : personaje})
+
+def sobre_mi(request):
+    return render(request, 'inicio/sobremi.html')
